@@ -1,9 +1,11 @@
 package com.mLastovsky.entity;
 
 import lombok.Data;
+import lombok.experimental.SuperBuilder;
 
 import java.io.Serializable;
 
+@SuperBuilder
 @Data
 public abstract class Entity implements Cloneable, Serializable {
     protected Long id;
