@@ -9,7 +9,7 @@
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
-        <servlet.version>3.1.0</servlet.version>
+        <servlet.version>6.0.0</servlet.version>
         <lombok.version>1.18.36</lombok.version>
     </properties>
 
@@ -22,8 +22,8 @@
         </dependency>
 
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
             <version>${servlet.version}</version>
         </dependency>
 
