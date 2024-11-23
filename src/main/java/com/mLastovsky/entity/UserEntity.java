@@ -7,8 +7,6 @@ import lombok.EqualsAndHashCode;
 @Data
 public class UserEntity extends Entity{
 
-    private String firstName;
-    private String lastName;
     private String username;
     private String password;
 }
