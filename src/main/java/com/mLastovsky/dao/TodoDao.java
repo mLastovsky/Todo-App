@@ -44,7 +44,7 @@ public class TodoDao implements Dao<Long, TodoEntity> {
     private static final String SQL_FIND_BY_ID = SQL_FIND_ALL + """
             WHERE id = ?""";
 
-    private static TodoDao getInstance() {
+    public static TodoDao getInstance() {
         return INSTANCE;
     }
 

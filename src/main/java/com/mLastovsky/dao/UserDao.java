@@ -42,7 +42,7 @@ public class UserDao implements Dao<Long, UserEntity> {
     private static final String SQL_FIND_BY_ID = SQL_FIND_ALL + """
             WHERE id = ?""";
 
-    private static UserDao getInstance() {
+    public static UserDao getInstance() {
         return INSTANCE;
     }
 
