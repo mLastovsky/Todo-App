@@ -5,7 +5,7 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class User extends Entity{
+public class UserEntity extends Entity{
 
     private String firstName;
     private String lastName;
