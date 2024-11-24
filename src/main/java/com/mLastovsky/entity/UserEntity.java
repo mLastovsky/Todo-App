@@ -10,5 +10,6 @@ import lombok.experimental.SuperBuilder;
 public class UserEntity extends Entity{
 
     private String username;
+    private String email;
     private String password;
 }

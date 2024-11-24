@@ -21,21 +21,23 @@ public class UserDao implements Dao<Long, UserEntity> {
             """;
 
     private static final String SQL_SAVE = """
-            INSERT INTO users (username, password)
-            VALUES (?,?)
+            INSERT INTO users (username, password, email)
+            VALUES (?,?,?)
             """;
 
     private static final String SQL_UPDATE = """
             UPDATE users
             SET username = ?,
-                password = ?
+                password = ?,
+                email = ?
             WHERE id = ?
             """;
 
     private static final String SQL_FIND_ALL = """
             SELECT id,
                 username,
-                password
+                password,
+                email
             FROM users
             """;
 
@@ -61,9 +63,10 @@ public class UserDao implements Dao<Long, UserEntity> {
     @Override
     public UserEntity save(UserEntity user) {
         try (var connection = ConnectionManager.get();
-             var preparedStatement = connection.prepareStatement(SQL_DELETE, Statement.RETURN_GENERATED_KEYS)) {
+             var preparedStatement = connection.prepareStatement(SQL_SAVE, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, user.getUsername());
             preparedStatement.setString(2, user.getPassword());
+            preparedStatement.setString(3, user.getEmail());
 
             preparedStatement.executeUpdate();
 
@@ -84,6 +87,7 @@ public class UserDao implements Dao<Long, UserEntity> {
              var preparedStatement = connection.prepareStatement(SQL_UPDATE)) {
             preparedStatement.setString(1, user.getUsername());
             preparedStatement.setString(2, user.getPassword());
+            preparedStatement.setString(3, user.getEmail());
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -130,9 +134,8 @@ public class UserDao implements Dao<Long, UserEntity> {
         return UserEntity.builder()
                 .id(resultSet.getLong("id"))
                 .username(resultSet.getString("username"))
+                .email(resultSet.getString("email"))
                 .password(resultSet.getString("password"))
                 .build();
     }
 }
-
-

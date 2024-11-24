@@ -8,5 +8,6 @@ import lombok.Value;
 public class UserDto {
 
     String username;
+    String email;
     String password;
 }
