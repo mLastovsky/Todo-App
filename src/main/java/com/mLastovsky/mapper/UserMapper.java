@@ -11,7 +11,7 @@ public class UserMapper implements Mapper<UserDto, UserEntity> {
     public UserEntity mapFrom(UserDto object) {
         return UserEntity.builder()
                 .username(object.getUsername())
-                .email(object.getPassword())
+                .email(object.getEmail())
                 .password(object.getPassword())
                 .build();
     }
