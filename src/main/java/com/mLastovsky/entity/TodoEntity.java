@@ -7,9 +7,9 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class UserEntity extends Entity{
+public class TodoEntity extends Entity{
 
-    private String username;
-    private String email;
-    private String password;
+    private Long userId;
+    private String task;
+    private Boolean completed;
 }

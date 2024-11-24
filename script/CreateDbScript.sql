@@ -1,6 +1,9 @@
+CREATE DATABASE todo_app_repository;
+
 CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY,
     username VARCHAR(128) NOT NULL UNIQUE,
+    email VARCHAR(50) NOT NULL UNIQUE,
     password VARCHAR(50) NOT NULL
 );
 
