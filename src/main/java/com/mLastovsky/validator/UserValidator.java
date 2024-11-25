@@ -24,7 +24,7 @@ public class UserValidator implements Validator<UserDto> {
     }
 
     private static boolean isCorrectEmail(UserDto object) {
-        final var EMAIL_REGEX = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\\\.[A-Z]{2,6}$";
+        final var EMAIL_REGEX = "^[a-zA-z]\\w*@\\w{3,}\\.\\w{2,}$";
 
         return Pattern.matches(EMAIL_REGEX,object.getEmail());
     }
