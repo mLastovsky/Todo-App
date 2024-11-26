@@ -18,23 +18,21 @@ public class UserService {
     private final UserMapper userMapper = UserMapper.getInstance();
     private final UserDtoMapper userDtoMapper = UserDtoMapper.getInstance();
 
-    public static UserService getInstance(){
+    public static UserService getInstance() {
         return INSTANCE;
     }
 
-    public Optional<UserDto> login(String username, String password){
+    public Optional<UserDto> login(String username, String password) {
         return userDao.findByLoginAndPassword(username, password)
                 .map(userDtoMapper::mapFrom);
     }
 
-    public Long create(UserDto userDto){
+    public void create(UserDto userDto) {
         var validationResult = userValidator.isValid(userDto);
-        if(!validationResult.isValid()){
+        if (!validationResult.isValid()) {
             throw new ValidationException(validationResult.getErrors());
         }
         var userEntity = userMapper.mapFrom(userDto);
         userDao.save(userEntity);
-
-        return userEntity.getId();
     }
 }

@@ -36,6 +36,7 @@ public class RegistrationServlet extends HttpServlet {
             resp.sendRedirect("/login");
         } catch (ValidationException e){
             req.setAttribute("errors", e.getErrors());
+            doGet(req,resp);
         }
     }
 }
