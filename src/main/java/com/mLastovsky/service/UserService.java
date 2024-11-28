@@ -2,6 +2,7 @@ package com.mLastovsky.service;
 
 import com.mLastovsky.dao.UserDao;
 import com.mLastovsky.dto.CreateUserDto;
+import com.mLastovsky.dto.UserDto;
 import com.mLastovsky.exception.ValidationException;
 import com.mLastovsky.mapper.CreateUserMapper;
 import com.mLastovsky.mapper.UserMapper;
@@ -22,17 +23,17 @@ public class UserService {
         return INSTANCE;
     }
 
-    public Optional<CreateUserDto> login(String username, String password) {
+    public Optional<UserDto> login(String username, String password) {
         return userDao.findByLoginAndPassword(username, password)
-                .map(createUserMapper::mapFrom);
+                .map(userMapper::mapFrom);
     }
 
-    public void create(CreateUserDto userDto) {
-        var validationResult = userValidator.isValid(userDto);
+    public void create(CreateUserDto createUserDto) {
+        var validationResult = userValidator.isValid(createUserDto);
         if (!validationResult.isValid()) {
             throw new ValidationException(validationResult.getErrors());
         }
-        var userEntity = userMapper.mapFrom(userDto);
+        var userEntity = createUserMapper.mapFrom(createUserDto);
         userDao.save(userEntity);
     }
 }
