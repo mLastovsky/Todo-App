@@ -1,6 +1,6 @@
 package com.mLastovsky.controller;
 
-import com.mLastovsky.dto.UserDto;
+import com.mLastovsky.dto.CreateUserDto;
 import com.mLastovsky.exception.ValidationException;
 import com.mLastovsky.service.UserService;
 import com.mLastovsky.util.JspHelper;
@@ -28,7 +28,7 @@ public class RegistrationServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        var userDto = UserDto.builder()
+        var userDto = CreateUserDto.builder()
                 .username(req.getParameter("username"))
                 .email(req.getParameter("email"))
                 .password(req.getParameter("password"))

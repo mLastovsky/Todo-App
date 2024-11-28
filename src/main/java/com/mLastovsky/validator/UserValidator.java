@@ -1,15 +1,15 @@
 package com.mLastovsky.validator;
 
-import com.mLastovsky.dto.UserDto;
+import com.mLastovsky.dto.CreateUserDto;
 
 import java.util.regex.Pattern;
 
-public class UserValidator implements Validator<UserDto> {
+public class UserValidator implements Validator<CreateUserDto> {
 
     private static final UserValidator INSTANCE = new UserValidator();
 
     @Override
-    public ValidationResult isValid(UserDto object) {
+    public ValidationResult isValid(CreateUserDto object) {
         var validationResult = new ValidationResult();
 
         if(object.getUsername().length()<2){
@@ -23,7 +23,7 @@ public class UserValidator implements Validator<UserDto> {
         return validationResult;
     }
 
-    private static boolean isCorrectEmail(UserDto object) {
+    private static boolean isCorrectEmail(CreateUserDto object) {
         final var EMAIL_REGEX = "^[a-zA-z]\\w*@\\w{3,}\\.\\w{2,}$";
 
         return Pattern.matches(EMAIL_REGEX,object.getEmail());

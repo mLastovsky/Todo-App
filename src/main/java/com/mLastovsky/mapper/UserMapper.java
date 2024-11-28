@@ -10,6 +10,7 @@ public class UserMapper implements Mapper<UserDto, UserEntity> {
     @Override
     public UserEntity mapFrom(UserDto object) {
         return UserEntity.builder()
+                .id(object.getId())
                 .username(object.getUsername())
                 .email(object.getEmail())
                 .password(object.getPassword())
