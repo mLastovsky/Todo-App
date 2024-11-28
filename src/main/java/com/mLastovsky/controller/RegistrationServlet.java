@@ -12,7 +12,10 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet("/registration")
+import static com.mLastovsky.util.UrlPath.LOGIN;
+import static com.mLastovsky.util.UrlPath.REGISTRATION;
+
+@WebServlet(REGISTRATION)
 public class RegistrationServlet extends HttpServlet {
 
     private final UserService userService = UserService.getInstance();
@@ -33,7 +36,7 @@ public class RegistrationServlet extends HttpServlet {
 
         try {
             userService.create(userDto);
-            resp.sendRedirect("/login");
+            resp.sendRedirect(LOGIN);
         } catch (ValidationException e){
             req.setAttribute("errors", e.getErrors());
             doGet(req,resp);

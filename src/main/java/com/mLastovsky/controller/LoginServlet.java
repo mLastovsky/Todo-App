@@ -12,7 +12,10 @@ import lombok.SneakyThrows;
 
 import java.io.IOException;
 
-@WebServlet("/login")
+import static com.mLastovsky.util.UrlPath.LOGIN;
+import static com.mLastovsky.util.UrlPath.TODOS;
+
+@WebServlet(LOGIN)
 public class LoginServlet extends HttpServlet {
 
     private final UserService userService = UserService.getInstance();
@@ -35,11 +38,11 @@ public class LoginServlet extends HttpServlet {
     @SneakyThrows
     private void onLoginSuccess(UserDto user, HttpServletRequest req, HttpServletResponse resp){
         req.getSession().setAttribute("user", user);
-        resp.sendRedirect("/todos");
+        resp.sendRedirect(TODOS);
     }
 
     @SneakyThrows
     private static void getOnLoginFail(HttpServletRequest req, HttpServletResponse resp) {
-        resp.sendRedirect("/login?error&username=" + req.getParameter("username"));
+        resp.sendRedirect(LOGIN + "?username=" + req.getParameter("username"));
     }
 }

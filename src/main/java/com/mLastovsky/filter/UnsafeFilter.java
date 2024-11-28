@@ -5,10 +5,14 @@ import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.java.Log;
 
 import java.io.IOException;
 
-@WebFilter("/todos")
+import static com.mLastovsky.util.UrlPath.LOGIN;
+import static com.mLastovsky.util.UrlPath.TODOS;
+
+@WebFilter(TODOS)
 public class UnsafeFilter implements Filter {
 
     @Override
@@ -18,7 +22,7 @@ public class UnsafeFilter implements Filter {
         if (user != null) {
             filterChain.doFilter(servletRequest, servletResponse);
         } else {
-            ((HttpServletResponse) servletResponse).sendRedirect("/login");
+            ((HttpServletResponse) servletResponse).sendRedirect(LOGIN);
         }
     }
 }

@@ -8,12 +8,15 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet("/logout")
+import static com.mLastovsky.util.UrlPath.LOGIN;
+import static com.mLastovsky.util.UrlPath.LOGOUT;
+
+@WebServlet(LOGOUT)
 public class LogoutServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getSession().invalidate();
-        resp.sendRedirect("/login");
+        resp.sendRedirect(LOGIN);
     }
 }
