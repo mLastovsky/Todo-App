@@ -3,9 +3,9 @@ package com.mLastovsky.mapper;
 import com.mLastovsky.dto.CreateTodoDto;
 import com.mLastovsky.entity.TodoEntity;
 
-public class CreateTodoDtoMapper implements Mapper<CreateTodoDto, TodoEntity> {
+public class CreateTodoMapper implements Mapper<CreateTodoDto, TodoEntity> {
 
-    private static final CreateTodoDtoMapper INSTANCE = new CreateTodoDtoMapper();
+    private static final CreateTodoMapper INSTANCE = new CreateTodoMapper();
 
     @Override
     public TodoEntity mapFrom(CreateTodoDto object) {
@@ -16,7 +16,7 @@ public class CreateTodoDtoMapper implements Mapper<CreateTodoDto, TodoEntity> {
                 .build();
     }
 
-    public static CreateTodoDtoMapper getInstance() {
+    public static CreateTodoMapper getInstance() {
         return INSTANCE;
     }
 }
