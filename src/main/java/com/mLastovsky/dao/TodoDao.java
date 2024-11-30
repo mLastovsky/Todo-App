@@ -44,6 +44,10 @@ public class TodoDao implements Dao<Long, TodoEntity> {
     private static final String SQL_FIND_BY_ID = SQL_FIND_ALL + """
             WHERE id = ?""";
 
+    private static final String SQL_FIND_ALL_USER_TODOS = SQL_FIND_ALL + """
+            WHERE user_id = ?
+            """;
+
     public static TodoDao getInstance() {
         return INSTANCE;
     }
@@ -117,6 +121,23 @@ public class TodoDao implements Dao<Long, TodoEntity> {
     public List<TodoEntity> findAll() {
         try (var connection = ConnectionManager.get();
              var preparedStatement = connection.prepareStatement(SQL_FIND_ALL)) {
+
+            var resultSet = preparedStatement.executeQuery();
+            List<TodoEntity> todos = new ArrayList<>();
+            while (resultSet.next()) {
+                todos.add(buildTodo(resultSet));
+            }
+
+            return todos;
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+    }
+
+    public List<TodoEntity> findAllUserTodos(Long userId){
+        try (var connection = ConnectionManager.get();
+             var preparedStatement = connection.prepareStatement(SQL_FIND_ALL_USER_TODOS)) {
+            preparedStatement.setLong(1, userId);
 
             var resultSet = preparedStatement.executeQuery();
             List<TodoEntity> todos = new ArrayList<>();
