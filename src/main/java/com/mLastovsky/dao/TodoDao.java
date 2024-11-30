@@ -92,6 +92,7 @@ public class TodoDao implements Dao<Long, TodoEntity> {
             preparedStatement.setLong(1, todo.getUserId());
             preparedStatement.setString(2, todo.getTask());
             preparedStatement.setBoolean(3, todo.getCompleted());
+            preparedStatement.setLong(4, todo.getId());
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
