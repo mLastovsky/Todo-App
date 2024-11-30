@@ -10,7 +10,9 @@ public class TodoValidator implements Validator<CreateTodoDto>{
     public ValidationResult isValid(CreateTodoDto object) {
         ValidationResult validationResult = new ValidationResult();
 
-        //TODO: implement correct validation of todoDto
+        if(object.getUserId() == null){
+            validationResult.add(Error.of("userId.invalid", "All tasks must have users"));
+        }
 
         return validationResult;
     }
