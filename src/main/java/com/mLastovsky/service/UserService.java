@@ -6,7 +6,7 @@ import com.mLastovsky.dto.UserDto;
 import com.mLastovsky.exception.ValidationException;
 import com.mLastovsky.mapper.CreateUserMapper;
 import com.mLastovsky.mapper.UserMapper;
-import com.mLastovsky.validator.UserValidator;
+import com.mLastovsky.validator.CreateUserValidator;
 
 import java.util.Optional;
 
@@ -15,7 +15,7 @@ public class UserService {
     private static final UserService INSTANCE = new UserService();
 
     private final UserDao userDao = UserDao.getInstance();
-    private final UserValidator userValidator = UserValidator.getInstance();
+    private final CreateUserValidator userValidator = CreateUserValidator.getInstance();
     private final UserMapper userMapper = UserMapper.getInstance();
     private final CreateUserMapper createUserMapper = CreateUserMapper.getInstance();
 
@@ -29,7 +29,7 @@ public class UserService {
     }
 
     public void create(CreateUserDto createUserDto) {
-        var validationResult = userValidator.isValid(createUserDto);
+        var validationResult = userValidator.validate(createUserDto);
         if (!validationResult.isValid()) {
             throw new ValidationException(validationResult.getErrors());
         }
