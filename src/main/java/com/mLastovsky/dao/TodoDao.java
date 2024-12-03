@@ -29,7 +29,7 @@ public class TodoDao implements Dao<Long, TodoEntity> {
             UPDATE todos
             SET user_id = ?,
                 task = ?,
-                completed = ?,
+                completed = ?
             WHERE id = ?
             """;
 
