@@ -12,8 +12,7 @@ import lombok.SneakyThrows;
 
 import java.io.IOException;
 
-import static com.mLastovsky.util.UrlPath.LOGIN;
-import static com.mLastovsky.util.UrlPath.TODOS;
+import static com.mLastovsky.util.UrlPath.*;
 
 @WebServlet(LOGIN)
 public class LoginServlet extends HttpServlet {
@@ -38,7 +37,7 @@ public class LoginServlet extends HttpServlet {
     @SneakyThrows
     private void onLoginSuccess(UserDto user, HttpServletRequest req, HttpServletResponse resp){
         req.getSession().setAttribute("user", user);
-        resp.sendRedirect(TODOS);
+        resp.sendRedirect(HOME);
     }
 
     @SneakyThrows
