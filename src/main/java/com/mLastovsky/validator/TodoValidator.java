@@ -1,23 +1,27 @@
 package com.mLastovsky.validator;
 
-import com.mLastovsky.dto.TodoDto;
+import com.mLastovsky.dto.CreateTodoDto;
 
-public class TodoValidator implements Validator<TodoDto>{
+public class TodoValidator implements Validator<CreateTodoDto> {
 
     private static final TodoValidator INSTANCE = new TodoValidator();
 
     @Override
-    public ValidationResult isValid(TodoDto object) {
+    public ValidationResult validate(CreateTodoDto object) {
         ValidationResult validationResult = new ValidationResult();
 
-        if(object.getUserId() == null){
+        if (object.getUserId() == null) {
             validationResult.add(Error.of("userId.invalid", "All tasks must have users"));
+        }
+
+        if (object.getTask().isEmpty()) {
+            validationResult.add(Error.of("task.invalid", "task cannot be empty"));
         }
 
         return validationResult;
     }
 
-    public static TodoValidator getInstance(){
+    public static TodoValidator getInstance() {
         return INSTANCE;
     }
 }
