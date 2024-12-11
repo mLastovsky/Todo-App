@@ -6,7 +6,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Todo App</title>
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" />
   </head>
   <body>
     <div class="container">
@@ -23,6 +23,6 @@
         </ul>
       </div>
     </div>
-    <script src="js/script.js"></script>
+    <script src="${pageContext.request.contextPath}/js/script.js"></script>
   </body>
 </html>
