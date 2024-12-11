@@ -17,8 +17,8 @@
           <button type="button" id="submit">Add</button>
         </div>
         <ul id="list-container">
-          <c:forEach items="${1,2,3}" var="i">
-            <li>${i}</li>
+          <c:forEach var="todo" items="${todos}">
+            <li>${todo.task}</li>
           </c:forEach>
         </ul>
       </div>
