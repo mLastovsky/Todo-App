@@ -1,4 +1,4 @@
-package com.mLastovsky.controller;
+package com.mLastovsky.servlet;
 
 import com.mLastovsky.dto.CreateTodoDto;
 import com.mLastovsky.dto.TodoDto;
@@ -6,18 +6,21 @@ import com.mLastovsky.dto.UserDto;
 import com.mLastovsky.exception.ValidationException;
 import com.mLastovsky.service.TodoService;
 import com.mLastovsky.util.JsonUtils;
+import com.mLastovsky.util.JspHelper;
 import com.mLastovsky.util.PathExtractor;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 
 import static com.mLastovsky.util.UrlPath.TODOS;
 import static jakarta.servlet.http.HttpServletResponse.*;
 
+@Slf4j
 @WebServlet(urlPatterns = TODOS)
 public class TodosServlet extends HttpServlet {
 
@@ -27,12 +30,10 @@ public class TodosServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         var userId = ((UserDto) req.getSession().getAttribute("user")).getId();
         var todos = todoService.getTodosByUserId(userId);
-
-        try(var out = resp.getWriter()) {
-            resp.setContentType("application/json");
-            out.print(JsonUtils.toJson(todos));
-            out.flush();
-        }
+        req.setAttribute("todos", todos);
+        log.info("Set attribute 'todos', List size: {}", todos.size());
+        req.getRequestDispatcher(JspHelper.getPath("todos"))
+                .forward(req, resp);
     }
 
     @Override
@@ -46,6 +47,7 @@ public class TodosServlet extends HttpServlet {
         } catch (ValidationException e) {
             resp.setStatus(SC_FORBIDDEN);
             req.setAttribute("errors", e.getErrors());
+            log.error(e.getMessage(), e.getCause());
         }
     }
 

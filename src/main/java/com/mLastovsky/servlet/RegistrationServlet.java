@@ -1,4 +1,4 @@
-package com.mLastovsky.controller;
+package com.mLastovsky.servlet;
 
 import com.mLastovsky.dto.CreateUserDto;
 import com.mLastovsky.exception.ValidationException;

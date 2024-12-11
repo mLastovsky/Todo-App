@@ -1,4 +1,4 @@
-package com.mLastovsky.controller;
+package com.mLastovsky.servlet;
 
 import com.mLastovsky.dto.UserDto;
 import com.mLastovsky.service.UserService;
@@ -9,11 +9,13 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 
 import static com.mLastovsky.util.UrlPath.*;
 
+@Slf4j
 @WebServlet(LOGIN)
 public class LoginServlet extends HttpServlet {
 
@@ -21,6 +23,7 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        log.info("doGet method in LoginServlet, redirect to login.jsp");
         req.getRequestDispatcher(JspHelper.getPath("login"))
                 .forward(req, resp);
     }
@@ -36,12 +39,14 @@ public class LoginServlet extends HttpServlet {
 
     @SneakyThrows
     private void onLoginSuccess(UserDto user, HttpServletRequest req, HttpServletResponse resp){
+        log.info("login success, redirect to {}", TODOS);
         req.getSession().setAttribute("user", user);
-        resp.sendRedirect(HOME);
+        resp.sendRedirect(TODOS);
     }
 
     @SneakyThrows
     private static void getOnLoginFail(HttpServletRequest req, HttpServletResponse resp) {
+        log.error("login error for user:{}", req.getParameter("username"));
         resp.sendRedirect(LOGIN + "?username=" + req.getParameter("username"));
     }
 }
