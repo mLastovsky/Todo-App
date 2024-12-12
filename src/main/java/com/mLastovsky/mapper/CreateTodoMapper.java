@@ -12,7 +12,6 @@ public class CreateTodoMapper implements Mapper<CreateTodoDto, TodoEntity> {
         return TodoEntity.builder()
                 .userId(object.getUserId())
                 .task(object.getTask())
-                .completed(object.getCompleted())
                 .build();
     }
 

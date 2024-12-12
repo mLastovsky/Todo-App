@@ -25,7 +25,6 @@ public class TodoService {
         var updateCreateTodoDto = CreateTodoDto.builder()
                 .userId(userId)
                 .task(createTodoDto.getTask())
-                .completed(createTodoDto.getCompleted())
                 .build();
 
         var validationResult = todoValidator.validate(updateCreateTodoDto);
