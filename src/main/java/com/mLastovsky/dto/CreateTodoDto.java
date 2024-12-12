@@ -9,5 +9,4 @@ public class CreateTodoDto {
 
     Long userId;
     String task;
-    Boolean completed;
 }
