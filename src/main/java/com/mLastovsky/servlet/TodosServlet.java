@@ -40,6 +40,7 @@ public class TodosServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         var userId = ((UserDto) req.getSession().getAttribute("user")).getId();
         var createTodoDto = JsonUtils.parseJsonBody(req, CreateTodoDto.class);
+        log.info("do Post method with createTodoDto: {}", createTodoDto);
 
         try {
             todoService.create(userId, createTodoDto);

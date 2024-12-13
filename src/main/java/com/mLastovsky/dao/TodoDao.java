@@ -21,8 +21,8 @@ public class TodoDao implements Dao<Long, TodoEntity> {
             """;
 
     private static final String SQL_SAVE = """
-            INSERT INTO todos (user_id, task, completed)
-            VALUES (?,?,?)
+            INSERT INTO todos (user_id, task)
+            VALUES (?,?)
             """;
 
     private static final String SQL_UPDATE = """
@@ -70,7 +70,6 @@ public class TodoDao implements Dao<Long, TodoEntity> {
              var preparedStatement = connection.prepareStatement(SQL_SAVE, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setLong(1, todo.getUserId());
             preparedStatement.setString(2, todo.getTask());
-            preparedStatement.setBoolean(3, todo.getCompleted());
 
             preparedStatement.executeUpdate();
 
