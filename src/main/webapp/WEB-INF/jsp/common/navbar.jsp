@@ -34,6 +34,7 @@
     padding: 8px 15px;
     border-radius: 5px;
     transition: background-color 0.3s ease;
+    font-weight: normal;
   }
 
   .navbar .nav-links a:hover {
@@ -41,20 +42,22 @@
   }
 
   .btn-logout {
-    background-color: var(--accent-color);
-    color: var(--button-text);
-    padding: 8px 15px;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: none;
     border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    font-weight: bold;
     cursor: pointer;
+    font-weight: normal;
+    text-decoration: none;
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 8px 15px;
+    border-radius: 5px;
     transition: background-color 0.3s ease;
-    text-transform: uppercase;
   }
 
   .btn-logout:hover {
-    background-color: #00e6b0;
+    background-color: var(--secondary-color);
   }
 </style>
 
