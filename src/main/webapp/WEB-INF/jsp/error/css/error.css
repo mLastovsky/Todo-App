@@ -1,0 +1,35 @@
+.error-container {
+  text-align: center;
+  padding: 50px;
+  background-color: var(--primary-color);
+  border-radius: 10px;
+  margin-top: 100px;
+  color: var(--text-color);
+}
+
+.error-container h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--accent-color);
+}
+
+.error-container p {
+  font-size: 1.2rem;
+  margin-top: 20px;
+}
+
+a .error-btn {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 10px 20px;
+  background-color: var(--accent-color);
+  color: var(--background);
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+a .error-btn:hover {
+  background-color: var(--secondary-color);
+}
