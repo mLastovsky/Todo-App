@@ -39,9 +39,9 @@ public class LoginServlet extends HttpServlet {
 
     @SneakyThrows
     private void onLoginSuccess(UserDto user, HttpServletRequest req, HttpServletResponse resp){
-        log.info("login success, redirect to {}", TODOS);
+        log.info("login success, redirect to {}", HOME);
         req.getSession().setAttribute("user", user);
-        resp.sendRedirect(TODOS);
+        resp.sendRedirect(HOME);
     }
 
     @SneakyThrows
