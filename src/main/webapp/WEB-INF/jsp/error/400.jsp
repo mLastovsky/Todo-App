@@ -11,8 +11,8 @@
   <body>
     <jsp:include page="/WEB-INF/jsp/common/navbar.jsp" />
     <div class="error-container">
-      <h1>404 - Not Found</h1>
-      <p>Sorry, the page you are looking for could not be found.</p>
+      <h1>400 - Bad Request</h1>
+      <p>Oops! The request was invalid. Please check the URL and try again.</p>
       <a href="<%=request.getContextPath()%>/" class="error-btn">Go to Home</a>
     </div>
     <script src="${pageContext.request.contextPath}/js/script.js"></script>

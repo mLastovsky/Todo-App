@@ -11,8 +11,8 @@
   <body>
     <jsp:include page="/WEB-INF/jsp/common/navbar.jsp" />
     <div class="error-container">
-      <h1>404 - Not Found</h1>
-      <p>Sorry, the page you are looking for could not be found.</p>
+      <h1>502 - Bad Gateway</h1>
+      <p>The server received an invalid response from the upstream server. Please try again later.</p>
       <a href="<%=request.getContextPath()%>/" class="error-btn">Go to Home</a>
     </div>
     <script src="${pageContext.request.contextPath}/js/script.js"></script>
