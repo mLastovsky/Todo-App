@@ -34,7 +34,6 @@ async function createTodo(data) {
     });
 
     const result = await response.json();
-    console.log("Success:", result.message);
   } catch (error) {
     console.error("Error:", error);
   }
@@ -46,7 +45,6 @@ async function deleteTodo(TodoID) {
       method: "DELETE",
     });
     const result = await response.json();
-    console.log("Success:", result.message);
   } catch (error) {
     console.error("Error:", error);
   }
@@ -62,7 +60,6 @@ async function updateTodo(id, data) {
       body: JSON.stringify(data),
     });
     const result = await response.json();
-    console.log("Success:", result);
   } catch (error) {
     console.error("Error:", error);
   }
