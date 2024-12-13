@@ -1,29 +1,38 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Todo App</title>
-        <link rel="stylesheet"
-        	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-        	crossorigin="anonymous">
-    </head>
-    <body>
-        <jsp:include page="common/header.jsp"></jsp:include>
-        <div class="container">
-            <div class="col-md-6 col-md-offset-3" style="overflow: auto">
-       		    <h2>Log in</h2>
-       		    <form action="<%=request.getContextPath()%>/login" method="post">
-       			    <div class="form-group">
-       				    <input type="text" class="form-control" id="username" placeholder="username" name="username" required>
-       			    </div>
-       			    <div class="form-group">
-       				    <input type="password" class="form-control" id="password" placeholder="password" name="password" required>
-       			    </div>
-       			    <button type="submit" class="btn btn-primary">Log in</button>
-       		    </form>
-       	    </div>
-       	</div>
-    </body>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo App</title>
+  </head>
+  <body>
+    <div class="login-container">
+      <div class="auth-box">
+        <h2>Log In</h2>
+        <form action="<%=request.getContextPath()%>/login" method="post">
+          <div class="input-group">
+            <input
+              type="text"
+              id="username"
+              name="username"
+              placeholder="Username"
+              required
+            />
+          </div>
+          <div class="input-group">
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Password"
+              required
+            />
+          </div>
+          <button type="submit" class="btn-primary">Log In</button>
+        </form>
+      </div>
+    </div>
+  </body>
 </html>
