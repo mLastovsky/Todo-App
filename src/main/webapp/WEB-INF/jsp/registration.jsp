@@ -137,6 +137,17 @@
         }
       }
 
+      .error-message {
+          color: #fff; /* Белый текст */
+          background-color: #b30000; /* Темно-красный фон */
+          padding: 15px;
+          border-radius: 5px;
+          border: 1px solid #800000; /* Темный красный бордер */
+          margin-bottom: 20px;
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Легкая тень */
+          font-size: 1rem;
+      }
+
       @media (max-width: 480px) {
         h2 {
           font-size: 1.2rem;
@@ -164,6 +175,11 @@
     <div class="registration-container">
       <div class="auth-box">
         <h2>Register</h2>
+        <c:if test="${not empty error}">
+          <div class="error-message">
+            <p>${error}</p>
+          </div>
+        </c:if>
         <form action="<%=request.getContextPath()%>/registration" method="post">
           <div class="input-group">
             <input

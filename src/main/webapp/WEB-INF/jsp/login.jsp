@@ -132,6 +132,17 @@
         }
       }
 
+      .error-message {
+          color: #fff;
+          background-color: #b30000;
+          padding: 15px;
+          border-radius: 5px;
+          border: 1px solid #800000;
+          margin-bottom: 20px;
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+          font-size: 1rem;
+      }
+
       @media (max-width: 480px) {
         h2 {
           font-size: 1.2rem;
@@ -158,6 +169,11 @@
     <div class="login-container">
       <div class="auth-box">
         <h2>Log In</h2>
+        <c:if test="${not empty error}">
+          <div class="error-message">
+            <p>${error}</p>
+          </div>
+        </c:if>
         <form action="<%=request.getContextPath()%>/login" method="post">
           <div class="input-group">
             <input
