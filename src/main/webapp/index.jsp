@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" />
   </head>
   <body>
+  <jsp:include page="/WEB-INF/jsp/common/navbar.jsp" />
     <h1>Todo App</h1>
         <div class="todo-app">
           <div id="new-todo">
