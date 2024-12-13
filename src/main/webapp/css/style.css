@@ -1,3 +1,4 @@
+/* Общие стили для всех страниц */
 :root {
   --background: #101114;
   --primary-color: #1c1d20;
@@ -5,153 +6,83 @@
   --accent-color: #00ffc4;
   --text-color: #f9f9f9;
 }
+
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
+
 html {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 16pt;
   color: var(--text-color);
 }
+
 body {
   min-height: 100vh;
-  padding: 10px;
   background-color: var(--background);
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-h1 {
-  margin-top: 100px;
-  margin-bottom: 20px;
-  font-size: 3rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  text-align: center;
-  color: var(--accent-color);
-}
-.todo-app {
-  width: 700px;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-#new-todo input {
-  box-sizing: border-box;
-  padding: 12px 20px;
-  width: 100%;
-  background: none;
-  border: 2px solid var(--secondary-color);
-  border-radius: 1000px;
-  font: inherit;
-  color: var(--text-color);
-  caret-color: var(--accent-color);
-}
-#new-todo input:focus {
-  outline: none;
-}
-#new-todo {
-  position: relative;
-}
-#submit {
-  position: absolute;
-  top: 0;
-  right: 0;
-  background-color: var(--accent-color);
-  height: 100%;
-  padding: 0 30px;
-  border: none;
-  border-radius: 1000px;
-  font: inherit;
-  font-weight: 600;
-  color: var(--background);
-  cursor: pointer;
+  padding: 10px;
 }
 
-.todo {
-  margin-bottom: 10px;
-  padding: 0 16px;
+/* Общие стили для navbar */
+.navbar {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
   background-color: var(--primary-color);
-  border-radius: 15px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
+  padding: 10px 20px;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
-.todo .todo-text {
-  padding: 15px;
-  padding-right: 0;
-  flex-grow: 1;
-  transition: 200ms ease;
+
+.navbar .logo {
+  color: var(--accent-color);
+  font-size: 1.8rem;
+  font-weight: 700;
 }
-.edit {
-  padding: 3px;
-  background: none;
-  border: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-}
-.edit svg {
-  transition: 200ms ease;
-}
-.edit:hover svg {
-  fill: #0073ff;
-}
-.delete {
-  padding: 3px;
-  background: none;
-  border: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-}
-.delete svg {
-  transition: 200ms ease;
-}
-.delete:hover svg {
-  fill: #ff0033;
-}
-.custom-checkbox {
-  border: 2px solid var(--accent-color);
-  border-radius: 50%;
-  min-height: 20px;
-  min-width: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-shrink: 0;
-  transition: 200ms ease;
-  cursor: pointer;
-}
-input[type="checkbox"]:checked ~ .custom-checkbox {
+
+.navbar .logout-button {
   background-color: var(--accent-color);
+  color: var(--background);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase;
 }
-input[type="checkbox"]:checked ~ .custom-checkbox svg {
-  fill: var(--primary-color);
+
+.navbar .logout-button:hover {
+  background-color: #00e6b0;
 }
-input[type="checkbox"]:checked ~ .todo-text {
-  text-decoration: line-through;
-  color: var(--secondary-color);
-}
-input[type="checkbox"] {
-  display: none;
-}
+
+/* Адаптивные стили */
 @media (max-width: 500px) {
   html {
     font-size: 12pt;
   }
-  #submit {
-    position: unset;
-    width: 100%;
-    margin-top: 10px;
+
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
     padding: 15px;
-    height: auto;
   }
-  h1 {
-    margin-top: 50px;
-    font-size: 15vw;
+
+  .navbar .logo {
+    font-size: 1.5rem;
+  }
+
+  .navbar .logout-button {
+    margin-top: 10px;
+    width: 100%;
+    padding: 12px;
   }
 }
