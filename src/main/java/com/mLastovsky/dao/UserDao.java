@@ -55,6 +55,15 @@ public class UserDao implements Dao<Long, UserEntity> {
             WHERE username = ?
             """;
 
+    private static final String SQL_FIND_BY_EMAIL = """
+            SELECT id,
+               username,
+               password,
+               email
+            FROM users
+            WHERE email = ?
+            """;
+
     public static UserDao getInstance() {
         return INSTANCE;
     }
@@ -187,6 +196,31 @@ public class UserDao implements Dao<Long, UserEntity> {
             return Optional.ofNullable(user);
         } catch (SQLException e) {
             log.error("Failed to find user by username: {}", username, e);
+            throw new DaoException(e);
+        }
+    }
+
+    public Optional<UserEntity> findByEmail(String email) {
+        log.debug("Attempting to find user by email: {}", email);
+        try (var connection = ConnectionManager.get();
+             var preparedStatement = connection.prepareStatement(SQL_FIND_BY_EMAIL)) {
+            preparedStatement.setString(1, email);
+
+            var resultSet = preparedStatement.executeQuery();
+            UserEntity user = null;
+            while (resultSet.next()) {
+                user = buildUser(resultSet);
+            }
+
+            if (user != null) {
+                log.info("User found for email: {}", email);
+            } else {
+                log.warn("No user found for email: {}", email);
+            }
+
+            return Optional.ofNullable(user);
+        } catch (SQLException e) {
+            log.error("Failed to find user by email: {}", email, e);
             throw new DaoException(e);
         }
     }
