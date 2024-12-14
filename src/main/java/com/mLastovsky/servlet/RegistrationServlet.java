@@ -1,6 +1,7 @@
 package com.mLastovsky.servlet;
 
 import com.mLastovsky.dto.CreateUserDto;
+import com.mLastovsky.exception.UserAlreadyExistsException;
 import com.mLastovsky.exception.ValidationException;
 import com.mLastovsky.service.UserService;
 import com.mLastovsky.util.JspHelper;
@@ -49,7 +50,12 @@ public class RegistrationServlet extends HttpServlet {
             userService.create(userDto);
             log.info("User {} successfully registered, redirecting to login page.", username);
             resp.sendRedirect(LOGIN);
-        } catch (ValidationException e){
+        }catch(UserAlreadyExistsException e){
+            log.warn("Registration failed for username '{}' and email '{}': {}", username, email, e.getMessage());
+            req.setAttribute("error", e.getMessage());
+            doGet(req, resp);
+        }
+        catch (ValidationException e){
             log.warn("Validation failed for user: {} with errors: {}", username, e.getErrors());
             req.setAttribute("error", e.getErrors());
             doGet(req,resp);

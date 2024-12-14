@@ -3,6 +3,7 @@ package com.mLastovsky.service;
 import com.mLastovsky.dao.UserDao;
 import com.mLastovsky.dto.CreateUserDto;
 import com.mLastovsky.dto.UserDto;
+import com.mLastovsky.exception.UserAlreadyExistsException;
 import com.mLastovsky.exception.ValidationException;
 import com.mLastovsky.mapper.CreateUserMapper;
 import com.mLastovsky.mapper.UserMapper;
@@ -52,9 +53,19 @@ public class UserService {
             throw new ValidationException(validationResult.getErrors());
         }
 
-        var userEntity = createUserMapper.mapFrom(createUserDto);
-        log.debug("Saving new user to database: {}", createUserDto.getUsername());
-        userDao.save(userEntity);
-        log.info("User {} created successfully", createUserDto.getUsername());
+        if(!userExists(createUserDto.getUsername(), createUserDto.getEmail())){
+            var userEntity = createUserMapper.mapFrom(createUserDto);
+            log.debug("Saving new user to database: {}", createUserDto.getUsername());
+            userDao.save(userEntity);
+            log.info("User {} created successfully", createUserDto.getUsername());
+        }
+        else{
+            log.warn("User with username '{}' or email '{}' already exists", createUserDto.getUsername(), createUserDto.getEmail());
+            throw new UserAlreadyExistsException("User with this username or email already exists");
+        }
+    }
+
+    public boolean userExists(String username, String email) {
+        return userDao.findByLogin(username).isPresent() || userDao.findByEmail(email).isPresent();
     }
 }
