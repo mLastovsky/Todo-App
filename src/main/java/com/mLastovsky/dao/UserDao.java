@@ -44,6 +44,15 @@ public class UserDao implements Dao<Long, UserEntity> {
     private static final String SQL_FIND_BY_ID = SQL_FIND_ALL + """
             WHERE id = ?""";
 
+    private static final String SQL_FIND_BY_LOGIN_AND_PASSWORD = """
+            SELECT id,
+               username,
+               password,
+               email
+            FROM users
+            WHERE username = ? AND password = ?
+            """;
+
     public static UserDao getInstance() {
         return INSTANCE;
     }
@@ -125,6 +134,24 @@ public class UserDao implements Dao<Long, UserEntity> {
             }
 
             return users;
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+    }
+
+    public Optional<UserEntity> findByLoginAndPassword(String username, String password) {
+        try (var connection = ConnectionManager.get();
+             var preparedStatement = connection.prepareStatement(SQL_FIND_BY_LOGIN_AND_PASSWORD)) {
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
+
+            var resultSet = preparedStatement.executeQuery();
+            UserEntity user = null;
+            while (resultSet.next()) {
+                user = buildUser(resultSet);
+            }
+
+            return Optional.ofNullable(user);
         } catch (SQLException e) {
             throw new DaoException(e);
         }

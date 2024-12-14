@@ -21,15 +21,15 @@ public class TodoDao implements Dao<Long, TodoEntity> {
             """;
 
     private static final String SQL_SAVE = """
-            INSERT INTO todos (user_id, task, completed)
-            VALUES (?,?,?)
+            INSERT INTO todos (user_id, task)
+            VALUES (?,?)
             """;
 
     private static final String SQL_UPDATE = """
             UPDATE todos
             SET user_id = ?,
                 task = ?,
-                completed = ?,
+                completed = ?
             WHERE id = ?
             """;
 
@@ -43,6 +43,10 @@ public class TodoDao implements Dao<Long, TodoEntity> {
 
     private static final String SQL_FIND_BY_ID = SQL_FIND_ALL + """
             WHERE id = ?""";
+
+    private static final String SQL_FIND_ALL_USER_TODOS = SQL_FIND_ALL + """
+            WHERE user_id = ?
+            """;
 
     public static TodoDao getInstance() {
         return INSTANCE;
@@ -66,7 +70,6 @@ public class TodoDao implements Dao<Long, TodoEntity> {
              var preparedStatement = connection.prepareStatement(SQL_SAVE, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setLong(1, todo.getUserId());
             preparedStatement.setString(2, todo.getTask());
-            preparedStatement.setBoolean(3, todo.getCompleted());
 
             preparedStatement.executeUpdate();
 
@@ -88,6 +91,7 @@ public class TodoDao implements Dao<Long, TodoEntity> {
             preparedStatement.setLong(1, todo.getUserId());
             preparedStatement.setString(2, todo.getTask());
             preparedStatement.setBoolean(3, todo.getCompleted());
+            preparedStatement.setLong(4, todo.getId());
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -117,6 +121,23 @@ public class TodoDao implements Dao<Long, TodoEntity> {
     public List<TodoEntity> findAll() {
         try (var connection = ConnectionManager.get();
              var preparedStatement = connection.prepareStatement(SQL_FIND_ALL)) {
+
+            var resultSet = preparedStatement.executeQuery();
+            List<TodoEntity> todos = new ArrayList<>();
+            while (resultSet.next()) {
+                todos.add(buildTodo(resultSet));
+            }
+
+            return todos;
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+    }
+
+    public List<TodoEntity> findAllUserTodos(Long userId){
+        try (var connection = ConnectionManager.get();
+             var preparedStatement = connection.prepareStatement(SQL_FIND_ALL_USER_TODOS)) {
+            preparedStatement.setLong(1, userId);
 
             var resultSet = preparedStatement.executeQuery();
             List<TodoEntity> todos = new ArrayList<>();

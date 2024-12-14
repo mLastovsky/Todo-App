@@ -1,6 +1,6 @@
-package com.mLastovsky.controller;
+package com.mLastovsky.servlet;
 
-import com.mLastovsky.dto.UserDto;
+import com.mLastovsky.dto.CreateUserDto;
 import com.mLastovsky.exception.ValidationException;
 import com.mLastovsky.service.UserService;
 import com.mLastovsky.util.JspHelper;
@@ -12,7 +12,10 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet("/registration")
+import static com.mLastovsky.util.UrlPath.LOGIN;
+import static com.mLastovsky.util.UrlPath.REGISTRATION;
+
+@WebServlet(REGISTRATION)
 public class RegistrationServlet extends HttpServlet {
 
     private final UserService userService = UserService.getInstance();
@@ -25,7 +28,7 @@ public class RegistrationServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        var userDto = UserDto.builder()
+        var userDto = CreateUserDto.builder()
                 .username(req.getParameter("username"))
                 .email(req.getParameter("email"))
                 .password(req.getParameter("password"))
@@ -33,9 +36,10 @@ public class RegistrationServlet extends HttpServlet {
 
         try {
             userService.create(userDto);
-            resp.sendRedirect("/login");
+            resp.sendRedirect(LOGIN);
         } catch (ValidationException e){
             req.setAttribute("errors", e.getErrors());
+            doGet(req,resp);
         }
     }
 }

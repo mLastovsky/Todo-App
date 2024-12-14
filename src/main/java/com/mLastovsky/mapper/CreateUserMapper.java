@@ -1,24 +1,22 @@
 package com.mLastovsky.mapper;
 
 import com.mLastovsky.dto.CreateUserDto;
-import com.mLastovsky.dto.UserDto;
 import com.mLastovsky.entity.UserEntity;
 
-public class UserMapper implements Mapper<UserEntity, UserDto> {
+public class CreateUserMapper implements Mapper<CreateUserDto, UserEntity> {
 
-    private static final UserMapper INSTANCE = new UserMapper();
+    private static final CreateUserMapper INSTANCE = new CreateUserMapper();
 
     @Override
-    public UserDto mapFrom(UserEntity object) {
-        return UserDto.builder()
-                .id(object.getId())
+    public UserEntity mapFrom(CreateUserDto object) {
+        return UserEntity.builder()
                 .username(object.getUsername())
                 .email(object.getEmail())
                 .password(object.getPassword())
                 .build();
     }
 
-    public static UserMapper getInstance() {
+    public static CreateUserMapper getInstance(){
         return INSTANCE;
     }
 }
