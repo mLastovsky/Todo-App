@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import java.io.IOException;
 
@@ -33,12 +34,15 @@ public class RegistrationServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
         String email = req.getParameter("email");
+        String password = req.getParameter("password");
+
+        String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
 
         log.info("Registration attempt for username: {}, email: {}", username, email);
         var userDto = CreateUserDto.builder()
                 .username(username)
                 .email(email)
-                .password(req.getParameter("password"))
+                .password(hashedPassword)
                 .build();
 
         try {

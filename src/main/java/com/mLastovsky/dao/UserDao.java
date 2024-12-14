@@ -46,13 +46,13 @@ public class UserDao implements Dao<Long, UserEntity> {
     private static final String SQL_FIND_BY_ID = SQL_FIND_ALL + """
             WHERE id = ?""";
 
-    private static final String SQL_FIND_BY_LOGIN_AND_PASSWORD = """
+    private static final String SQL_FIND_BY_LOGIN = """
             SELECT id,
                username,
                password,
                email
             FROM users
-            WHERE username = ? AND password = ?
+            WHERE username = ?
             """;
 
     public static UserDao getInstance() {
@@ -166,12 +166,11 @@ public class UserDao implements Dao<Long, UserEntity> {
         }
     }
 
-    public Optional<UserEntity> findByLoginAndPassword(String username, String password) {
+    public Optional<UserEntity> findByLogin(String username) {
         log.debug("Attempting to find user by username: {}", username);
         try (var connection = ConnectionManager.get();
-             var preparedStatement = connection.prepareStatement(SQL_FIND_BY_LOGIN_AND_PASSWORD)) {
+             var preparedStatement = connection.prepareStatement(SQL_FIND_BY_LOGIN)) {
             preparedStatement.setString(1, username);
-            preparedStatement.setString(2, password);
 
             var resultSet = preparedStatement.executeQuery();
             UserEntity user = null;

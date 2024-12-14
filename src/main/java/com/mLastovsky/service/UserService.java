@@ -7,6 +7,7 @@ import com.mLastovsky.exception.ValidationException;
 import com.mLastovsky.mapper.CreateUserMapper;
 import com.mLastovsky.mapper.UserMapper;
 import com.mLastovsky.validator.CreateUserValidator;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import java.util.Optional;
 
@@ -24,7 +25,8 @@ public class UserService {
     }
 
     public Optional<UserDto> login(String username, String password) {
-        return userDao.findByLoginAndPassword(username, password)
+        return userDao.findByLogin(username)
+                .filter(user -> BCrypt.checkpw(password, user.getPassword()))
                 .map(userMapper::mapFrom);
     }
 
