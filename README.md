@@ -58,8 +58,8 @@ Follow these steps to run the project on your local machine:
 
 2. **Configure Database**
 
-    - Create a file `src/main/resources/application.properties`.
-    - Set the database URL, username, password, and pool size to match your local setup.
+   - Create a file `src/main/resources/application.properties`.
+   - Set the database URL, username, password, and pool size to match your local setup.
 
    ```properties
    db.url=jdbc:postgres://localhost:5432/todo_app_repository
@@ -68,37 +68,60 @@ Follow these steps to run the project on your local machine:
    db.pool.size=your-db-pool-size
    ```
 
-    - Run the SQL schema file located in `script/CreateDbScript.sql` to initialize the database. You can execute the script directly using PostgreSQL's command-line tool `psql` or your preferred database management tool. For `psql`, use the following command:
+   - Run the SQL schema file located in `script/CreateDbScript.sql` to initialize the database:
 
-```bash
-psql -U your-username -d postgres -f script/CreateDbScript.sql
-```
+     ```bash
+     psql -U your-username -d postgres -f script/CreateDbScript.sql
+     ```
 
-3\. **Build the Project**
+3. **Build the Project**
 
-Use Maven to build the project:
+   Use Maven to build the project:
 
-```bash
-mvn clean install
-```
+   ```bash
+   mvn clean install
+   ```
 
 4. **Deploy to Tomcat**
 
-    - Copy the generated WAR file from the `target` directory to the `webapps` directory of your Tomcat installation.
-    - Start Tomcat and ensure it deploys successfully.
+   - Copy the generated WAR file from the `target` directory to the `webapps` directory of your Tomcat installation.
+   - Start Tomcat and ensure it deploys successfully.
 
 5. **Access the Application**
 
-    - Open your browser and go to:
-      ```
-      http://localhost:8080/
-      ```
+   - Open your browser and go to:
+     ```
+     http://localhost:8080/
+     ```
 
 ---
 
 ## Screenshots
 
-[Optional: Add screenshots of your application to give users a visual overview.]
+### Login Page
+The login interface for users to access their accounts.
+
+![Login Page](screenshots/login.png)
+
+### Registration Page
+The registration page for creating a new account.
+
+![Registration Page](screenshots/registration.png)
+
+### Dashboard
+The main dashboard displaying the user's todos.
+
+![Dashboard](screenshots/dashboard.png)
+
+### Edit Todo
+The interface for editing an existing todo.
+
+![Edit Todo](screenshots/editTodo.png)
+
+### Database Schema
+Visual representation of the database structure.
+
+![Database Schema](screenshots/dbSchema.png)
 
 ---
 
@@ -120,4 +143,3 @@ Contributions are welcome! If you'd like to contribute, follow these steps:
    git push origin feature/your-feature-name
    ```
 5. Open a Pull Request.
-
