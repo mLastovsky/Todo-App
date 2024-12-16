@@ -21,17 +21,6 @@ public class TodoMapper implements Mapper<TodoEntity, TodoDto> {
                 .build();
     }
 
-    @Override
-    public TodoEntity mapTo(TodoDto object) {
-        log.info("Mapping TodoDto to TodoEntity with id: {}", object.getId());
-
-        return TodoEntity.builder()
-                .userId(object.getUserId())
-                .task(object.getTask())
-                .completed(object.getCompleted())
-                .build();
-    }
-
     public static TodoMapper getInstance() {
         return INSTANCE;
     }

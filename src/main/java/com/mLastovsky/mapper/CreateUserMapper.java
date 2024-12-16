@@ -20,17 +20,6 @@ public class CreateUserMapper implements Mapper<CreateUserDto, UserEntity> {
                 .build();
     }
 
-    @Override
-    public CreateUserDto mapTo(UserEntity object) {
-        log.info("Mapping UserEntity to CreateUserDto with username: {}", object.getUsername());
-
-        return CreateUserDto.builder()
-                .username(object.getUsername())
-                .email(object.getEmail())
-                .password(object.getPassword())
-                .build();
-    }
-
     public static CreateUserMapper getInstance() {
         return INSTANCE;
     }

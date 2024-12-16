@@ -19,16 +19,6 @@ public class CreateTodoMapper implements Mapper<CreateTodoDto, TodoEntity> {
                 .build();
     }
 
-    @Override
-    public CreateTodoDto mapTo(TodoEntity object) {
-        log.info("Mapping TodoEntity to CreateTodoDto with userId: {}", object.getUserId());
-
-        return CreateTodoDto.builder()
-                .userId(object.getUserId())
-                .task(object.getTask())
-                .build();
-    }
-
     public static CreateTodoMapper getInstance() {
         return INSTANCE;
     }
