@@ -1,15 +1,18 @@
 package com.mLastovsky.mapper;
 
-import com.mLastovsky.dto.CreateUserDto;
 import com.mLastovsky.dto.UserDto;
 import com.mLastovsky.entity.UserEntity;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class UserMapper implements Mapper<UserEntity, UserDto> {
 
     private static final UserMapper INSTANCE = new UserMapper();
 
     @Override
     public UserDto mapFrom(UserEntity object) {
+        log.info("Mapping UserEntity to UserDto with username: {}", object.getUsername());
+
         return UserDto.builder()
                 .id(object.getId())
                 .username(object.getUsername())
