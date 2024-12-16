@@ -12,7 +12,6 @@
         <maven.compiler.release>21</maven.compiler.release>
         <servlet.version>6.0.0</servlet.version>
         <lombok.version>1.18.36</lombok.version>
-        <taglib.version>1.2.5</taglib.version>
     </properties>
 
     <dependencies>
