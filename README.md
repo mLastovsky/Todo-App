@@ -70,9 +70,9 @@ Follow these steps to run the project on your local machine:
 
    - Run the SQL schema file located in `script/CreateDbScript.sql` to initialize the database:
 
-     ```bash
-     psql -U your-username -d postgres -f script/CreateDbScript.sql
-     ```
+   ```bash
+   psql -U your-username -d postgres -f script/CreateDbScript.sql
+   ```
 
 3. **Build the Project**
 
@@ -90,9 +90,9 @@ Follow these steps to run the project on your local machine:
 5. **Access the Application**
 
    - Open your browser and go to:
-     ```
-     http://localhost:8080/
-     ```
+   ```
+   http://localhost:8080/
+   ```
 
 ---
 
@@ -122,24 +122,3 @@ The interface for editing an existing todo.
 Visual representation of the database structure.
 
 ![Database Schema](screenshots/dbSchema.png)
-
----
-
-## Contributing
-
-Contributions are welcome! If you'd like to contribute, follow these steps:
-
-1. Fork the repository.
-2. Create a new branch:
-   ```bash
-   git checkout -b feature/your-feature-name
-   ```
-3. Commit your changes:
-   ```bash
-   git commit -m "Add your message here"
-   ```
-4. Push to the branch:
-   ```bash
-   git push origin feature/your-feature-name
-   ```
-5. Open a Pull Request.
