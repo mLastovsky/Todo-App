@@ -71,7 +71,7 @@ Follow these steps to run the project on your local machine:
    - Run the SQL schema file located in `scripts/CreateDbScript.sql` to initialize the database:
 
    ```bash
-   psql -U your-username -d postgres -f script/CreateDbScript.sql
+   psql -U your-username -d postgres -f scripts/CreateDbScript.sql
    ```
 
 3. **Build the Project**
