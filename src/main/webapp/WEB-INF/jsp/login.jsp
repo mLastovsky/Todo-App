@@ -1,4 +1,3 @@
-<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
@@ -30,14 +29,13 @@
         color: var(--text-color);
         background-color: var(--background);
         display: flex;
-        padding-top: 70px;
         justify-content: center;
         align-items: center;
         height: 100vh;
         padding: 10px;
       }
 
-      .registration-container {
+      .login-container {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -67,7 +65,6 @@
       }
 
       input[type="text"],
-      input[type="email"],
       input[type="password"] {
         width: 100%;
         padding: 12px 15px;
@@ -79,7 +76,6 @@
       }
 
       input[type="text"]:focus,
-      input[type="email"]:focus,
       input[type="password"]:focus {
         outline: none;
         border-color: var(--accent-color);
@@ -102,7 +98,7 @@
         background-color: #00e6b0;
       }
 
-      .login-link {
+      .signup-link {
         margin-top: 15px;
         text-align: center;
         display: block;
@@ -111,7 +107,7 @@
         font-size: 0.9rem;
       }
 
-      .login-link:hover {
+      .signup-link:hover {
         text-decoration: underline;
       }
 
@@ -122,7 +118,6 @@
         }
 
         input[type="text"],
-        input[type="email"],
         input[type="password"] {
           font-size: 0.9rem;
           padding: 10px 12px;
@@ -138,13 +133,13 @@
       }
 
       .error-message {
-          color: #fff; /* Белый текст */
-          background-color: #b30000; /* Темно-красный фон */
+          color: #fff;
+          background-color: #b30000;
           padding: 15px;
           border-radius: 5px;
-          border: 1px solid #800000; /* Темный красный бордер */
+          border: 1px solid #800000;
           margin-bottom: 20px;
-          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Легкая тень */
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
           font-size: 1rem;
       }
 
@@ -154,7 +149,6 @@
         }
 
         input[type="text"],
-        input[type="email"],
         input[type="password"] {
           font-size: 0.8rem;
           padding: 8px 10px;
@@ -172,30 +166,21 @@
   </head>
   <body>
     <jsp:include page="common/navbar.jsp" />
-    <div class="registration-container">
+    <div class="login-container">
       <div class="auth-box">
-        <h2>Register</h2>
+        <h2>Log In</h2>
         <c:if test="${not empty error}">
           <div class="error-message">
             <p>${error}</p>
           </div>
         </c:if>
-        <form action="<%=request.getContextPath()%>/registration" method="post">
+        <form action="<%=request.getContextPath()%>/login" method="post">
           <div class="input-group">
             <input
               type="text"
               id="username"
               name="username"
               placeholder="Username"
-              required
-            />
-          </div>
-          <div class="input-group">
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Email"
               required
             />
           </div>
@@ -208,10 +193,10 @@
               required
             />
           </div>
-          <button type="submit" class="btn-primary">Register</button>
+          <button type="submit" class="btn-primary">Log In</button>
         </form>
-        <a href="<%=request.getContextPath()%>/login" class="login-link">
-          Already have an account? Log in here
+        <a href="<%=request.getContextPath()%>/registration" class="signup-link">
+          Don't have an account? Sign up here
         </a>
       </div>
     </div>

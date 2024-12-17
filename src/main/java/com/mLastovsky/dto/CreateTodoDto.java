@@ -3,12 +3,10 @@ package com.mLastovsky.dto;
 import lombok.Builder;
 import lombok.Value;
 
-@Value
 @Builder
-public class TodoDto {
+@Value
+public class CreateTodoDto {
 
-    Long id;
     Long userId;
     String task;
-    Boolean completed;
 }

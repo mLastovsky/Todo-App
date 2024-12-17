@@ -5,9 +5,8 @@ import lombok.Value;
 
 @Value
 @Builder
-public class UserDto {
+public class CreateUserDto {
 
-    Long id;
     String username;
     String email;
     String password;
