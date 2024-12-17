@@ -82,10 +82,17 @@ Follow these steps to run the project on your local machine:
    mvn clean install
    ```
 
-4. **Deploy to Tomcat**
+### 4. **Run the Application via IntelliJ IDEA**
 
-   - Copy the generated WAR file from the `target` directory to the `webapps` directory of your Tomcat installation.
-   - Start Tomcat and ensure it deploys successfully.
+- Open the project in IntelliJ IDEA.
+- Go to **Run | Edit Configurations**.
+- Add a new configuration of type **Tomcat Server | Local**.
+- Set it up as shown in the image below.
+
+![Tomcat Configuration](screenshots/tomcatConfiguration.png)
+
+- Save the configuration.
+- Run the application by selecting the configuration and pressing the green run button.
 
 5. **Access the Application**
 
