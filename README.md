@@ -68,7 +68,7 @@ Follow these steps to run the project on your local machine:
    db.pool.size=your-db-pool-size
    ```
 
-   - Run the SQL schema file located in `script/CreateDbScript.sql` to initialize the database:
+   - Run the SQL schema file located in `scripts/CreateDbScript.sql` to initialize the database:
 
    ```bash
    psql -U your-username -d postgres -f script/CreateDbScript.sql
