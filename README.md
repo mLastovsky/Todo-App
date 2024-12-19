@@ -62,7 +62,7 @@ Follow these steps to run the project on your local machine:
    - Set the database URL, username, password, and pool size to match your local setup.
 
    ```properties
-   db.url=jdbc:postgres://localhost:5432/todo_app_repository
+   db.url=jdbc:postgresql://localhost:5432/todo_app_repository
    db.username=your-username
    db.password=your-password
    db.pool.size=your-db-pool-size
