@@ -1,7 +1,5 @@
 CREATE DATABASE todo_app_repository;
 
-\c todo_app_repository;
-
 CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY,
     username VARCHAR(128) NOT NULL UNIQUE,
