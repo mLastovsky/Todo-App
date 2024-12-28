@@ -21,6 +21,7 @@ The project is developed using the following technologies:
 - **Lombok**: To reduce boilerplate code in Java.
 - **Logback & SLF4J**: For logging.
 - **Database Connection Pooling**: For efficient resource management.
+- **JUnit 5**: For unit and integration testing.
 
 ---
 
