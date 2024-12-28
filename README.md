@@ -44,8 +44,7 @@ Follow these steps to run the project on your local machine:
 1. Install **Java Development Kit (JDK)** (version 17 or higher).
 2. Install **Apache Tomcat** (version 10 or higher).
 3. Install **PostgreSQL**.
-4. Install **Maven** (latest version).
-5. Clone this repository to your local machine.
+4. Clone this repository to your local machine.
 
 ### Steps
 
@@ -79,7 +78,7 @@ Follow these steps to run the project on your local machine:
    Use Maven to build the project:
 
    ```bash
-   mvn clean install
+   ./mvnw clean install
    ```
 
 ### 4. **Run the Application via IntelliJ IDEA**
